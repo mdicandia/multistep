@@ -1,11 +1,10 @@
 "use client";
 import * as React from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import {
   FormErrorMessage,
   FormLabel,
   FormControl,
-  Button,
   Select,
 } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
@@ -13,37 +12,17 @@ import styles from "./tab.module.css";
 import { CustomInput } from "./CustomInput";
 import "react-datepicker/dist/react-datepicker.css";
 
-type Fields = {
-  unitType: string;
-  unit: string;
-  moveInDate: string;
-  deposit: string;
-  rent: string;
-  prepayment: string;
-  promocode: string;
-  products: string;
-};
-
 export const Form = () => {
   const {
-    handleSubmit,
     register,
+    formState: { errors },
     control,
-    formState: { errors, isSubmitting },
-  } = useForm<Fields>();
+  } = useFormContext();
 
-  function onSubmit(values: any) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        // alert('chubaca');
-        resolve(values);
-      }, 3000);
-    });
-  }
   return (
     <>
       <h1 className={styles.formHeader}>Order Summary</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <div className={styles.sharedRow}>
           <div className={styles.select}>
             <FormControl isInvalid={Boolean(errors.unitType) ?? false}>
@@ -103,7 +82,7 @@ export const Form = () => {
                 )}
               />
               <FormErrorMessage>
-                {/* {errors.moveInDate && String(errors.moveInDate.message)} */}
+                {errors.moveInDate && String(errors.moveInDate.message)}
               </FormErrorMessage>
             </FormControl>
           </div>
@@ -162,14 +141,6 @@ export const Form = () => {
             type="text"
           />
         </div>
-        <Button
-          mt={4}
-          colorScheme="teal"
-          isLoading={isSubmitting}
-          type="submit"
-        >
-          Submit
-        </Button>
       </form>
     </>
   );

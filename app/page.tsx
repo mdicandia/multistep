@@ -1,25 +1,36 @@
 "use client";
-import useSWR, { Fetcher } from "swr";
-import { data } from "./components/CustomTabs.utils";
+import useSWR from "swr";
 import styles from "./page.module.css";
 import CustomTabs from "@/app/components/CustomTabs";
+import { Button } from "@chakra-ui/react";
+import { nextStep } from "./components/CustomTabs.utils";
+
+type State = "ready" | "completed";
 
 type Data = {
-  id: number;
-  name: string;
+  type: string;
+  state: State;
 };
 
-const fetcher = (...args: Parameters<typeof fetch>): Promise<Data> =>
+export type Steps = Data[];
+
+const fetcher = (...args: Parameters<typeof fetch>): Promise<Steps> =>
   fetch(...args).then((res) => res.json());
 export default function Home() {
   // fetch api/steps and pass it to CustomTabs
-  const { data, error } = useSWR("/api/steps", fetcher);
-  console.log({ data });
+  const { data: steps, error } = useSWR<Steps, any>("/api/steps", fetcher);
   return (
     <main className={styles.main}>
       <div>
-        <CustomTabs data={data} />
+        <CustomTabs steps={steps} />
       </div>
+      <Button
+        size="md"
+        sx={{ margin: "10px 0px" }}
+        onClick={() => nextStep({ type: "reset" })}
+      >
+        Reset Steps
+      </Button>
     </main>
   );
 }

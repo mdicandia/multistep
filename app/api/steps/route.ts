@@ -9,11 +9,17 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   let body = await request.json();
-  steps = steps.map((step) => {
-    if (step.type === body.type) {
-      return { ...step, state: "completed" };
-    }
-    return step;
-  });
-  return new Response("OK", { status: 200 });
+  if (body.type !== "reset") {
+    steps = steps.map((step) => {
+      if (step.type === body.type) {
+        return { ...step, state: "completed" };
+      }
+      return step;
+    });
+  } else {
+    steps = steps.map((step) => {
+      return { ...step, state: "ready" };
+    });
+  }
+  return new Response(JSON.stringify(steps));
 }
