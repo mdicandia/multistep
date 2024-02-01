@@ -1,12 +1,7 @@
 "use client";
 import * as React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import {
-  FormErrorMessage,
-  FormLabel,
-  FormControl,
-  Select,
-} from "@chakra-ui/react";
+import { FormLabel, FormControl, Select } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import styles from "./tab.module.css";
 import { CustomInput } from "./CustomInput";
@@ -45,9 +40,6 @@ export const Form = () => {
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
               </Select>
-              {/* <FormErrorMessage> */}
-              {/* {errors.unitType && String(errors.unitType.message ?? '')} */}
-              {/* </FormErrorMessage> */}
             </FormControl>
           </div>
           <CustomInput
@@ -81,9 +73,6 @@ export const Form = () => {
                   />
                 )}
               />
-              <FormErrorMessage>
-                {errors.moveInDate && String(errors.moveInDate.message)}
-              </FormErrorMessage>
             </FormControl>
           </div>
         </div>
