@@ -16,10 +16,10 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import styles from "./tab.module.css";
-import { Steps } from "../page";
+import styles from "./customTabs.module.css";
+import { Steps } from "../../page";
 import { Config, stepsConfig } from "./CustomTabs.utils";
-import { Footer } from "./Footer";
+import { Footer } from "../Footer/Footer";
 import { FormProvider, useForm } from "react-hook-form";
 
 type Fields = {

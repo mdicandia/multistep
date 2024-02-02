@@ -1,9 +1,9 @@
 "use client";
 import useSWR from "swr";
 import styles from "./page.module.css";
-import CustomTabs from "@/app/components/CustomTabs";
+import CustomTabs from "@/app/components/CustomTabs/CustomTabs";
 import { Button, Flex } from "@chakra-ui/react";
-import { nextStep } from "./components/CustomTabs.utils";
+import { nextStep } from "./components/CustomTabs/CustomTabs.utils";
 
 type State = "ready" | "completed";
 

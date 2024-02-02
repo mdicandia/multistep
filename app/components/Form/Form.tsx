@@ -3,8 +3,8 @@ import * as React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { FormLabel, FormControl, Select } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
-import styles from "./tab.module.css";
-import { CustomInput } from "./CustomInput";
+import styles from "./form.module.css";
+import { CustomInput } from "../CustomInput/CustomInput";
 import "react-datepicker/dist/react-datepicker.css";
 import useSWR from "swr";
 

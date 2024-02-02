@@ -1,0 +1,16 @@
+.edit {
+  align-self: end;
+}
+
+.inputValue {
+  height: 25px;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.input {
+  width: 100%;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+}

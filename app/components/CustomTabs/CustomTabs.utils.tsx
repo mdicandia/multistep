@@ -1,9 +1,9 @@
 import previewContract from "@/assets/previewContract.svg";
 import contract from "@/assets/contract.svg";
 import creditCard from "@/assets/creditCard.svg";
-import { Reminder } from "./Reminder";
-import { Invoice } from "./Invoice";
-import { Form } from "./Form";
+import { Reminder } from "../Reminder/Reminder";
+import { Invoice } from "../Invoice/Invoice";
+import { Form } from "../Form/Form";
 import { mutate } from "swr";
 
 export const nextStep = async ({ type }: { type: string }) => {

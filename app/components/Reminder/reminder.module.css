@@ -1,0 +1,13 @@
+.reminder {
+  margin: 12px 2px;
+  padding: 24px;
+  font-size: 14px;
+  background-color: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
+
+.name {
+  font-weight: 700;
+  margin: 0px 3px;
+}

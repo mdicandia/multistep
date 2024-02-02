@@ -1,13 +1,8 @@
 "use client";
 import * as React from "react";
-import {
-  FormErrorMessage,
-  FormLabel,
-  FormControl,
-  Input,
-} from "@chakra-ui/react";
+import { FormLabel, FormControl, Input } from "@chakra-ui/react";
 import edit from "@/assets/edit.svg";
-import styles from "./tab.module.css";
+import styles from "./customInput.module.css";
 import Image from "next/image";
 import { useWatch } from "react-hook-form";
 

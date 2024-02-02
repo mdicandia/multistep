@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import styles from "./tab.module.css";
+import styles from "./footer.module.css";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import Image from "next/image";
 

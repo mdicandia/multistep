@@ -3,7 +3,7 @@
 import Image from "next/image";
 import * as React from "react";
 import clock from "@/assets/clock.svg";
-import styles from "./tab.module.css";
+import styles from "./reminder.module.css";
 import { Flex } from "@chakra-ui/react";
 
 const name = "John Doe";
