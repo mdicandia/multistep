@@ -13,6 +13,7 @@ import {
   Divider,
   Button,
   IconButton,
+  Flex,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import styles from "./tab.module.css";
@@ -57,13 +58,13 @@ function CustomTab({
       }}
       {...tabProps}
     >
-      <Box as="span" sx={{ minWidth: "30px" }} mr="2">
+      <Flex as="span" sx={{ minWidth: "30px" }} mr="2">
         {!isCompleted ? (
           <div className={styles.circle} />
         ) : (
           <Image alt="Check Icon" width={30} height={30} src={check} />
         )}
-      </Box>
+      </Flex>
       {tabProps.children}
       {hasDivider && (
         <Divider sx={{ marginLeft: "35px" }} orientation="vertical" />
