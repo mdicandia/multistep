@@ -20,15 +20,15 @@ export default function Home() {
   const { data: steps } = useSWR<Steps, any>("/api/steps", fetcher);
   return (
     <main className={styles.main}>
-      <Flex direction='column'>
+      <Flex direction="column">
         <CustomTabs steps={steps} />
-      <Button
-        size="md"
-        sx={{ margin: "10px 0px" }}
-        onClick={() => nextStep({ type: "reset" })}
-      >
-        Reset Steps
-      </Button>
+        <Button
+          size="md"
+          sx={{ margin: "10px 0px" }}
+          onClick={() => nextStep({ type: "reset" })}
+        >
+          Reset Steps
+        </Button>
       </Flex>
     </main>
   );
