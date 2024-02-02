@@ -9,8 +9,10 @@ Visit [https://multistep-beige.vercel.app/](https://multistep-beige.vercel.app/)
 ## Getting Started
 
 First, run the development server:
+Requires node >= 18.17
 
 ```bash
+npm install
 npm run dev
 ```
 
