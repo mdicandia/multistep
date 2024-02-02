@@ -2,16 +2,14 @@
 import React from "react";
 import "./Invoice.css";
 import {
-  Column,
-  Table,
   ColumnDef,
   useReactTable,
   getCoreRowModel,
   flexRender,
-  RowData,
 } from "@tanstack/react-table";
 import { Flex, HStack, Spacer, Tag } from "@chakra-ui/react";
 import { format } from "date-fns";
+import useSWR from "swr";
 
 const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -26,40 +24,13 @@ type Invoice = {
   subtotal: string;
 };
 
-const data = [
-  {
-    date: "2023-10-25",
-    description: "Deposit",
-    tax: "",
-    price: "200",
-    subtotal: "200",
-  },
-  {
-    date: "2023-10-25",
-    description: "Rent",
-    tax: "5",
-    price: "100",
-    subtotal: "105",
-  },
-  {
-    date: "2023-10-25",
-    description: "Admin fee",
-    tax: "",
-    price: "10",
-    subtotal: "10",
-  },
-  {
-    date: "2021-01-04",
-    description: "Cleaning fee",
-    tax: "5",
-    price: "5.9",
-    subtotal: "10.90",
-  },
-];
+type InvoiceData = Invoice[];
+
+const fetcher = (...args: Parameters<typeof fetch>): Promise<InvoiceData> =>
+  fetch(...args).then((res) => res.json());
 
 export function Invoice() {
-  const rerender = React.useReducer(() => ({}), {})[1];
-
+  const { data: invoiceData } = useSWR<InvoiceData, any>("/api/table", fetcher);
   const columns = React.useMemo<ColumnDef<Invoice>[]>(
     () => [
       {
@@ -104,11 +75,14 @@ export function Invoice() {
           </div>
         ),
         footer: () => {
-          const total = formatter.format(
-            data
-              .map((row) => Number(row.subtotal))
-              .reduce((sum, val) => sum + val, 0),
-          );
+          let total = "0";
+          if (invoiceData) {
+            total = formatter.format(
+              invoiceData
+                .map((row) => Number(row.subtotal))
+                .reduce((sum, val) => sum + val, 0),
+            );
+          }
           return (
             <div className="col">
               <>Total: {total}</>
@@ -117,11 +91,11 @@ export function Invoice() {
         },
       },
     ],
-    [],
+    [invoiceData],
   );
 
   const table = useReactTable({
-    data,
+    data: invoiceData ?? [],
     columns,
     getCoreRowModel: getCoreRowModel(),
   });

@@ -2,7 +2,7 @@
 import useSWR from "swr";
 import styles from "./page.module.css";
 import CustomTabs from "@/app/components/CustomTabs";
-import { Button } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { nextStep } from "./components/CustomTabs.utils";
 
 type State = "ready" | "completed";
@@ -20,9 +20,8 @@ export default function Home() {
   const { data: steps } = useSWR<Steps, any>("/api/steps", fetcher);
   return (
     <main className={styles.main}>
-      <div>
+      <Flex direction='column'>
         <CustomTabs steps={steps} />
-      </div>
       <Button
         size="md"
         sx={{ margin: "10px 0px" }}
@@ -30,6 +29,7 @@ export default function Home() {
       >
         Reset Steps
       </Button>
+      </Flex>
     </main>
   );
 }

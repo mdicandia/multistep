@@ -6,6 +6,17 @@ import DatePicker from "react-datepicker";
 import styles from "./tab.module.css";
 import { CustomInput } from "./CustomInput";
 import "react-datepicker/dist/react-datepicker.css";
+import useSWR from "swr";
+
+type Unit = {
+  id: string;
+  label: string;
+};
+
+type UnitOptions = Unit[];
+
+const fetcher = (...args: Parameters<typeof fetch>): Promise<UnitOptions> =>
+  fetch(...args).then((res) => res.json());
 
 export const Form = () => {
   const {
@@ -13,6 +24,8 @@ export const Form = () => {
     formState: { errors },
     control,
   } = useFormContext();
+
+  const { data: unitOptions } = useSWR<UnitOptions, any>("/api/units", fetcher);
 
   return (
     <>
@@ -36,9 +49,11 @@ export const Form = () => {
                 sx={{ height: "24px" }}
                 size="xs"
               >
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+                {unitOptions?.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.label}
+                  </option>
+                ))}
               </Select>
             </FormControl>
           </div>
