@@ -18,7 +18,7 @@ import {
 import Image from "next/image";
 import styles from "./customTabs.module.css";
 import { Steps } from "../../page";
-import { Config, stepsConfig } from "./CustomTabs.utils";
+import { Config, StepsConfig } from "./CustomTabs.utils";
 import { Footer } from "../Footer/Footer";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -73,7 +73,13 @@ function CustomTab({
   );
 }
 
-function CustomTabs({ steps }: { steps: Steps | undefined }) {
+function CustomTabs({
+  steps,
+  stepsConfig,
+}: {
+  steps: Steps | undefined;
+  stepsConfig: StepsConfig;
+}) {
   const [tabConfig, setTabConfig] = React.useState<Config | null>(null);
 
   const MAX_TAB_INDEX = steps?.length;
@@ -85,7 +91,7 @@ function CustomTabs({ steps }: { steps: Steps | undefined }) {
       const currentStep = stepsConfig[step?.type!] || null;
       setTabConfig(currentStep);
     }
-  }, [steps]);
+  }, [steps, stepsConfig]);
 
   return (
     <>

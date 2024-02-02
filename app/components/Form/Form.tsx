@@ -60,7 +60,7 @@ export const Form = () => {
           <CustomInput
             id="unit"
             label="Unit"
-            placeholder="Select unit"
+            placeholder="Type unit"
             control={control}
             type="text"
             register={register}
@@ -81,7 +81,7 @@ export const Form = () => {
                 name="moveInDate"
                 render={({ field }) => (
                   <DatePicker
-                    placeholderText="Select date"
+                    placeholderText="Pick date"
                     onChange={(date) => field.onChange(date)}
                     selected={field.value ? new Date(field.value) : new Date()}
                     className={styles.datePicker}
@@ -95,7 +95,7 @@ export const Form = () => {
           <CustomInput
             id="deposit"
             label="Deposit"
-            placeholder="Select deposit"
+            placeholder="Type deposit"
             control={control}
             register={register}
             errors={errors}
@@ -105,7 +105,7 @@ export const Form = () => {
           <CustomInput
             id="rent"
             label="Rent"
-            placeholder="Select rent"
+            placeholder="Type rent"
             control={control}
             register={register}
             errors={errors}
@@ -116,7 +116,7 @@ export const Form = () => {
           <CustomInput
             id="prepayment"
             label="Prepayment"
-            placeholder="Select prepayment"
+            placeholder="Type prepayment"
             control={control}
             register={register}
             errors={errors}
@@ -127,7 +127,7 @@ export const Form = () => {
           <CustomInput
             id="promocode"
             label="Promocode"
-            placeholder="Select promocode"
+            placeholder="Type promocode"
             control={control}
             register={register}
             errors={errors}
@@ -138,7 +138,7 @@ export const Form = () => {
           <CustomInput
             id="products"
             label="Products"
-            placeholder="Select products"
+            placeholder="Type products"
             control={control}
             register={register}
             errors={errors}

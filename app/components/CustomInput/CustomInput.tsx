@@ -52,7 +52,7 @@ export const CustomInput = ({
           />
         </FormControl>
       ) : (
-        <div className={styles.inputValue}> {value} </div>
+        <div className={styles.inputValue}> {value ?? '-'} </div>
       )}
       <Image
         onClick={() => handleOnClick()}

@@ -30,10 +30,7 @@ const fetcher = (...args: Parameters<typeof fetch>): Promise<InvoiceData> =>
   fetch(...args).then((res) => res.json());
 
 export function Invoice() {
-  const { data: invoiceData, isLoading } = useSWR<InvoiceData, any>(
-    "/api/table",
-    fetcher,
-  );
+  const { data: invoiceData } = useSWR<InvoiceData, any>("/api/table", fetcher);
   const columns = React.useMemo<ColumnDef<Invoice>[]>(
     () => [
       {
@@ -94,7 +91,7 @@ export function Invoice() {
         },
       },
     ],
-    [invoiceData, isLoading],
+    [invoiceData],
   );
 
   const table = useReactTable({
